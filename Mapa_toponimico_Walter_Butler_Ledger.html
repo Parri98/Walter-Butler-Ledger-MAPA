@@ -1,0 +1,2353 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f2514b7aea6e97fe9006c610235c8c3a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet.fullscreen@3.0.0/Control.FullScreen.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet-minimap/3.6.1/Control.MiniMap.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>
+    
+    
+<div style="position: fixed; 
+     top: 10px; left: 50px; width: 380px; z-index:9999; font-size:13px;
+     background-color: white; border:2px solid grey; border-radius:6px;
+     padding: 10px; box-shadow: 2px 2px 6px rgba(0,0,0,0.2);">
+<b>Mapa de referencias geográficas</b><br>
+<i>Walter Butler Ledger</i><br>
+Se han representado los lugares identificables con suficiente seguridad.<br>
+<ul style="margin:6px 0 0 18px; padding:0;">
+<li>Azul: puertos/ciudades</li>
+<li>Verde: regiones</li>
+<li>Rojo: áreas marítimas</li>
+</ul>
+<b>Nota:</b> algunos puntos son aproximados (Sanlúcar, Passage, St. Martin, etc.).
+</div>
+    
+            <div class="folium-map" id="map_f2514b7aea6e97fe9006c610235c8c3a" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f2514b7aea6e97fe9006c610235c8c3a = L.map(
+                "map_f2514b7aea6e97fe9006c610235c8c3a",
+                {
+                    center: [47.0, -20.0],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 4,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+
+            
+
+        
+    
+            var tile_layer_61fd362ef945958b7e0e7b957b9f9ea1 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_61fd362ef945958b7e0e7b957b9f9ea1.addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+        
+    
+            L.control.fullscreen(
+                {
+  "position": "topleft",
+  "title": "Full Screen",
+  "titleCancel": "Exit Full Screen",
+  "forceSeparateButton": false,
+}
+            ).addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+        
+    
+            var tile_layer_544934420fa3a0de14cfb6a1a38c0918 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors", "detect_retina": false, "max_native_zoom": 19, "max_zoom": 19, "min_zoom": 0, "no_wrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            );
+            var mini_map_c37a2a6898bab5bc65d64dd484ec4268 = new L.Control.MiniMap(
+                tile_layer_544934420fa3a0de14cfb6a1a38c0918,
+                {
+  "position": "bottomright",
+  "width": 150,
+  "height": 150,
+  "collapsedWidth": 25,
+  "collapsedHeight": 25,
+  "zoomLevelOffset": -5,
+  "centerFixed": false,
+  "zoomAnimation": false,
+  "toggleDisplay": true,
+  "autoToggleDisplay": false,
+  "minimized": false,
+}
+            );
+            map_f2514b7aea6e97fe9006c610235c8c3a.addControl(mini_map_c37a2a6898bab5bc65d64dd484ec4268);
+        
+    
+            var feature_group_02376dd6afcc80da2df7c7820ddb42d9 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_cluster_58d3cd1f672ec788b4313e1362a880ac = L.markerClusterGroup(
+                {
+}
+            );
+        
+    
+            var marker_9ffb9e5b6ad76318cc8ea55107a103a1 = L.marker(
+                [52.2593, -7.1101],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_af8890859e1746d1f806659af67a9403 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_3c78f63ee0d2a13efaf9f75c8d649e32 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_898d8e7b7839248687c9deb63475dd7f = $(`<div id="html_898d8e7b7839248687c9deb63475dd7f" style="width: 100.0%; height: 100.0%;">     <b>Waterford</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 2–19, 26–30, 35, 53–54, 56, 63–66, 68–71, 73, 75–77, 80, 82, 86–88, 90–92, 94, 96–98, 100<br>     <b>Nota:</b> Puerto y referencia más frecuente.     </div>`)[0];
+                popup_3c78f63ee0d2a13efaf9f75c8d649e32.setContent(html_898d8e7b7839248687c9deb63475dd7f);
+            
+        
+
+        marker_9ffb9e5b6ad76318cc8ea55107a103a1.bindPopup(popup_3c78f63ee0d2a13efaf9f75c8d649e32)
+        ;
+
+        
+    
+    
+            marker_9ffb9e5b6ad76318cc8ea55107a103a1.bindTooltip(
+                `<div>
+                     Waterford
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9ffb9e5b6ad76318cc8ea55107a103a1.setIcon(icon_af8890859e1746d1f806659af67a9403);
+            
+    
+            var marker_3a0152c04c566c1cafbd4d271c6f6d13 = L.marker(
+                [51.5074, -0.1278],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_fb66519fbd821c01ab844f2b7482568a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a360375fc347f17c8a913f2d7f95a680 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2e4be59a8800ef4386f3ca8c3d468754 = $(`<div id="html_2e4be59a8800ef4386f3ca8c3d468754" style="width: 100.0%; height: 100.0%;">     <b>London</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 2, 11, 18–19, 26–27, 29, 31, 33, 35–36, 38, 43, 80, 93<br>     <b>Nota:</b> Londres.     </div>`)[0];
+                popup_a360375fc347f17c8a913f2d7f95a680.setContent(html_2e4be59a8800ef4386f3ca8c3d468754);
+            
+        
+
+        marker_3a0152c04c566c1cafbd4d271c6f6d13.bindPopup(popup_a360375fc347f17c8a913f2d7f95a680)
+        ;
+
+        
+    
+    
+            marker_3a0152c04c566c1cafbd4d271c6f6d13.bindTooltip(
+                `<div>
+                     London
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3a0152c04c566c1cafbd4d271c6f6d13.setIcon(icon_fb66519fbd821c01ab844f2b7482568a);
+            
+    
+            var marker_5dcdf07cd04a5c4bf478e8702af147b5 = L.marker(
+                [44.8378, -0.5792],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_e0e507f4a84134e40a7232d25f418b64 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9fa0a67d164cdef78948f771596cba6c = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_24abcbba7887ed83097386ff6eb51773 = $(`<div id="html_24abcbba7887ed83097386ff6eb51773" style="width: 100.0%; height: 100.0%;">     <b>Bordeaux</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 2, 98–99<br>     <b>Nota:</b> Bourdeaux / Bordeaux.     </div>`)[0];
+                popup_9fa0a67d164cdef78948f771596cba6c.setContent(html_24abcbba7887ed83097386ff6eb51773);
+            
+        
+
+        marker_5dcdf07cd04a5c4bf478e8702af147b5.bindPopup(popup_9fa0a67d164cdef78948f771596cba6c)
+        ;
+
+        
+    
+    
+            marker_5dcdf07cd04a5c4bf478e8702af147b5.bindTooltip(
+                `<div>
+                     Bordeaux
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_5dcdf07cd04a5c4bf478e8702af147b5.setIcon(icon_e0e507f4a84134e40a7232d25f418b64);
+            
+    
+            var marker_8aedccc921421470255281e0ea498f5b = L.marker(
+                [45.127, -0.662],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_17a4b7f59f4776a00323ad4723cb7619 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_1ff503674fb9b2cb079001de49412c73 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_40d1fbf584eb0ab212da150152274d85 = $(`<div id="html_40d1fbf584eb0ab212da150152274d85" style="width: 100.0%; height: 100.0%;">     <b>Blaye</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 98–99<br>     <b>Nota:</b> Aparece en el entorno de Burdeos.     </div>`)[0];
+                popup_1ff503674fb9b2cb079001de49412c73.setContent(html_40d1fbf584eb0ab212da150152274d85);
+            
+        
+
+        marker_8aedccc921421470255281e0ea498f5b.bindPopup(popup_1ff503674fb9b2cb079001de49412c73)
+        ;
+
+        
+    
+    
+            marker_8aedccc921421470255281e0ea498f5b.bindTooltip(
+                `<div>
+                     Blaye
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8aedccc921421470255281e0ea498f5b.setIcon(icon_17a4b7f59f4776a00323ad4723cb7619);
+            
+    
+            var marker_3bcf69811062c74c75f85f9453439582 = L.marker(
+                [38.7223, -9.1393],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_883c8af596456f9e2ca4712d13d3467b = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8015d4586b98492db0b388dd076c2e01 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0218100ddbb19160c5f302ab184dc794 = $(`<div id="html_0218100ddbb19160c5f302ab184dc794" style="width: 100.0%; height: 100.0%;">     <b>Lisbon</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 6, 13, 18, 76, 78–83, 100<br>     <b>Nota:</b> Lisboa.     </div>`)[0];
+                popup_8015d4586b98492db0b388dd076c2e01.setContent(html_0218100ddbb19160c5f302ab184dc794);
+            
+        
+
+        marker_3bcf69811062c74c75f85f9453439582.bindPopup(popup_8015d4586b98492db0b388dd076c2e01)
+        ;
+
+        
+    
+    
+            marker_3bcf69811062c74c75f85f9453439582.bindTooltip(
+                `<div>
+                     Lisbon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3bcf69811062c74c75f85f9453439582.setIcon(icon_883c8af596456f9e2ca4712d13d3467b);
+            
+    
+            var marker_3c37adc75ce051300200eba95d2816f0 = L.marker(
+                [36.5271, -6.2886],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_177e383e448675a69a044799ebefaf16 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f8363f8df3cc167e6d0df54764d99647 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7891d89c3d060545d5e73ac48819aae1 = $(`<div id="html_7891d89c3d060545d5e73ac48819aae1" style="width: 100.0%; height: 100.0%;">     <b>Cádiz</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 7–10, 22–23, 68–69, 71, 73–75, 100<br>     <b>Nota:</b> Cadiz / Cadize / Cadix.     </div>`)[0];
+                popup_f8363f8df3cc167e6d0df54764d99647.setContent(html_7891d89c3d060545d5e73ac48819aae1);
+            
+        
+
+        marker_3c37adc75ce051300200eba95d2816f0.bindPopup(popup_f8363f8df3cc167e6d0df54764d99647)
+        ;
+
+        
+    
+    
+            marker_3c37adc75ce051300200eba95d2816f0.bindTooltip(
+                `<div>
+                     Cádiz
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3c37adc75ce051300200eba95d2816f0.setIcon(icon_177e383e448675a69a044799ebefaf16);
+            
+    
+            var marker_ad72c932baf32c21020e797d691f9368 = L.marker(
+                [37.3891, -5.9845],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_9f73f339da24bcd31b3d43c281852965 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_fedf14cb203998630c13090fcafda3fc = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_fdd6aafba15a6aab5de469e98c22aec8 = $(`<div id="html_fdd6aafba15a6aab5de469e98c22aec8" style="width: 100.0%; height: 100.0%;">     <b>Sevilla</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 7–8, 68, 74<br>     <b>Nota:</b> Seville / Siville.     </div>`)[0];
+                popup_fedf14cb203998630c13090fcafda3fc.setContent(html_fdd6aafba15a6aab5de469e98c22aec8);
+            
+        
+
+        marker_ad72c932baf32c21020e797d691f9368.bindPopup(popup_fedf14cb203998630c13090fcafda3fc)
+        ;
+
+        
+    
+    
+            marker_ad72c932baf32c21020e797d691f9368.bindTooltip(
+                `<div>
+                     Sevilla
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_ad72c932baf32c21020e797d691f9368.setIcon(icon_9f73f339da24bcd31b3d43c281852965);
+            
+    
+            var marker_4dd336ab056cfa78b1875085addb2909 = L.marker(
+                [36.7781, -6.3515],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_ff1eb51b87c519f577287b7fdd32b893 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_b41af44fa9d7b0c82b688879eac6e17a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5dd128274b555e487742fdac7c9d304a = $(`<div id="html_5dd128274b555e487742fdac7c9d304a" style="width: 100.0%; height: 100.0%;">     <b>Sanlúcar de Barrameda</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 8, 19, 21–23, 68–69, 71<br>     <b>Nota:</b> St. Lucar / St. Lucas; identificación probable.     </div>`)[0];
+                popup_b41af44fa9d7b0c82b688879eac6e17a.setContent(html_5dd128274b555e487742fdac7c9d304a);
+            
+        
+
+        marker_4dd336ab056cfa78b1875085addb2909.bindPopup(popup_b41af44fa9d7b0c82b688879eac6e17a)
+        ;
+
+        
+    
+    
+            marker_4dd336ab056cfa78b1875085addb2909.bindTooltip(
+                `<div>
+                     Sanlúcar de Barrameda
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4dd336ab056cfa78b1875085addb2909.setIcon(icon_ff1eb51b87c519f577287b7fdd32b893);
+            
+    
+            var marker_86c0de78ad4f2d59862339e000c06899 = L.marker(
+                [36.6, -6.2333],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_e53ab39ea692315a8d7ce62207bcf89d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_63936e714f9bc8fa9bc681fab9442702 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_635a4a9415a2c752ffc2ef0c6457b538 = $(`<div id="html_635a4a9415a2c752ffc2ef0c6457b538" style="width: 100.0%; height: 100.0%;">     <b>El Puerto de Santa María</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 23<br>     <b>Nota:</b> Port St. Maria; identificación probable.     </div>`)[0];
+                popup_63936e714f9bc8fa9bc681fab9442702.setContent(html_635a4a9415a2c752ffc2ef0c6457b538);
+            
+        
+
+        marker_86c0de78ad4f2d59862339e000c06899.bindPopup(popup_63936e714f9bc8fa9bc681fab9442702)
+        ;
+
+        
+    
+    
+            marker_86c0de78ad4f2d59862339e000c06899.bindTooltip(
+                `<div>
+                     El Puerto de Santa María
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_86c0de78ad4f2d59862339e000c06899.setIcon(icon_e53ab39ea692315a8d7ce62207bcf89d);
+            
+    
+            var marker_336d55437b6d5c98cf131511be7635c6 = L.marker(
+                [51.8985, -8.4756],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_6a93660cfb0a09f4938c4a5f65197df9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6f90f8265b1fbe411b665370fd03a70e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f54b5ca1a18b8cb27ddbf2e1e621f4bf = $(`<div id="html_f54b5ca1a18b8cb27ddbf2e1e621f4bf" style="width: 100.0%; height: 100.0%;">     <b>Cork</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 7–9, 12, 39, 66–68, 71, 98–100<br>     <b>Nota:</b> Cork / Corke.     </div>`)[0];
+                popup_6f90f8265b1fbe411b665370fd03a70e.setContent(html_f54b5ca1a18b8cb27ddbf2e1e621f4bf);
+            
+        
+
+        marker_336d55437b6d5c98cf131511be7635c6.bindPopup(popup_6f90f8265b1fbe411b665370fd03a70e)
+        ;
+
+        
+    
+    
+            marker_336d55437b6d5c98cf131511be7635c6.bindTooltip(
+                `<div>
+                     Cork
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_336d55437b6d5c98cf131511be7635c6.setIcon(icon_6a93660cfb0a09f4938c4a5f65197df9);
+            
+    
+            var marker_01f54b7140f5d9bcf6986d6ff733a28a = L.marker(
+                [51.8492, -8.2943],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_3e12e43bd862c9c9a38a01aaa771a893 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_10acb69fe4bccb13f61f354f882141fe = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d55fb99826976f99e26747ac2d99cb90 = $(`<div id="html_d55fb99826976f99e26747ac2d99cb90" style="width: 100.0%; height: 100.0%;">     <b>Cobh (The Cove)</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 66<br>     <b>Nota:</b> “Cove”; identificación probable con Cobh / The Cove of Cork.     </div>`)[0];
+                popup_10acb69fe4bccb13f61f354f882141fe.setContent(html_d55fb99826976f99e26747ac2d99cb90);
+            
+        
+
+        marker_01f54b7140f5d9bcf6986d6ff733a28a.bindPopup(popup_10acb69fe4bccb13f61f354f882141fe)
+        ;
+
+        
+    
+    
+            marker_01f54b7140f5d9bcf6986d6ff733a28a.bindTooltip(
+                `<div>
+                     Cobh (The Cove)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_01f54b7140f5d9bcf6986d6ff733a28a.setIcon(icon_3e12e43bd862c9c9a38a01aaa771a893);
+            
+    
+            var marker_9e8d6bde2d8f1c3ad491d58b6427330f = L.marker(
+                [53.3498, -6.2603],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_7c791bb747def4b50f90040c75a03d61 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_17e45a84921a34ff6d9833f236bbd8e9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_416f27c1c72d95c08b3350557650d302 = $(`<div id="html_416f27c1c72d95c08b3350557650d302" style="width: 100.0%; height: 100.0%;">     <b>Dublin</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 19, 25–26, 54, 56–57, 72<br>     <b>Nota:</b> Dublín.     </div>`)[0];
+                popup_17e45a84921a34ff6d9833f236bbd8e9.setContent(html_416f27c1c72d95c08b3350557650d302);
+            
+        
+
+        marker_9e8d6bde2d8f1c3ad491d58b6427330f.bindPopup(popup_17e45a84921a34ff6d9833f236bbd8e9)
+        ;
+
+        
+    
+    
+            marker_9e8d6bde2d8f1c3ad491d58b6427330f.bindTooltip(
+                `<div>
+                     Dublin
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9e8d6bde2d8f1c3ad491d58b6427330f.setIcon(icon_7c791bb747def4b50f90040c75a03d61);
+            
+    
+            var marker_0f2d208eaa858bfae188d75a469c85a6 = L.marker(
+                [52.0894, -7.6253],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_1b085b4383ee1aa2031cef07e2245650 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_dafc3ee845450719ea025d4730eb6d68 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_de9011ebc022531559fd82a0c21a4edb = $(`<div id="html_de9011ebc022531559fd82a0c21a4edb" style="width: 100.0%; height: 100.0%;">     <b>Dungarvan</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 27, 29, 37–41, 76<br>     <b>Nota:</b> Irlanda.     </div>`)[0];
+                popup_dafc3ee845450719ea025d4730eb6d68.setContent(html_de9011ebc022531559fd82a0c21a4edb);
+            
+        
+
+        marker_0f2d208eaa858bfae188d75a469c85a6.bindPopup(popup_dafc3ee845450719ea025d4730eb6d68)
+        ;
+
+        
+    
+    
+            marker_0f2d208eaa858bfae188d75a469c85a6.bindTooltip(
+                `<div>
+                     Dungarvan
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0f2d208eaa858bfae188d75a469c85a6.setIcon(icon_1b085b4383ee1aa2031cef07e2245650);
+            
+    
+            var marker_f33a6ad7ff922e96a5088516e548362b = L.marker(
+                [52.9808, -6.0448],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_c3a89da7213379c2888d1c1a97873895 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7e0ed2ad06fa44d58bb289da337a05d9 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_6715ffe317f21f4e95471fa447a8e76b = $(`<div id="html_6715ffe317f21f4e95471fa447a8e76b" style="width: 100.0%; height: 100.0%;">     <b>Wicklow</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 56<br>     <b>Nota:</b> Irlanda.     </div>`)[0];
+                popup_7e0ed2ad06fa44d58bb289da337a05d9.setContent(html_6715ffe317f21f4e95471fa447a8e76b);
+            
+        
+
+        marker_f33a6ad7ff922e96a5088516e548362b.bindPopup(popup_7e0ed2ad06fa44d58bb289da337a05d9)
+        ;
+
+        
+    
+    
+            marker_f33a6ad7ff922e96a5088516e548362b.bindTooltip(
+                `<div>
+                     Wicklow
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_f33a6ad7ff922e96a5088516e548362b.setIcon(icon_c3a89da7213379c2888d1c1a97873895);
+            
+    
+            var marker_c2322d2e466b6a0e4d99e1530e9a5f97 = L.marker(
+                [53.3419, -6.2128],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_eb41515e214d5af5283e6120bff5b413 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_38f73da8ffba7b3d40a5aa934adc7676 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a67b5b428512ae3f6cfc0363114b4eec = $(`<div id="html_a67b5b428512ae3f6cfc0363114b4eec" style="width: 100.0%; height: 100.0%;">     <b>Ringsend</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 57<br>     <b>Nota:</b> Rings End.     </div>`)[0];
+                popup_38f73da8ffba7b3d40a5aa934adc7676.setContent(html_a67b5b428512ae3f6cfc0363114b4eec);
+            
+        
+
+        marker_c2322d2e466b6a0e4d99e1530e9a5f97.bindPopup(popup_38f73da8ffba7b3d40a5aa934adc7676)
+        ;
+
+        
+    
+    
+            marker_c2322d2e466b6a0e4d99e1530e9a5f97.bindTooltip(
+                `<div>
+                     Ringsend
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c2322d2e466b6a0e4d99e1530e9a5f97.setIcon(icon_eb41515e214d5af5283e6120bff5b413);
+            
+    
+            var marker_0375a262f32bf3fc46b3a559f442aba4 = L.marker(
+                [52.2501, -6.9726],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_c2461d96da7963d9dd43e418af498122 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7a9cad52cc66e850a538cda18ab6c925 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5c7fbee5e93ea6109ae48d23e12cd695 = $(`<div id="html_5c7fbee5e93ea6109ae48d23e12cd695" style="width: 100.0%; height: 100.0%;">     <b>Ballyhack</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 30<br>     <b>Nota:</b> Irlanda.     </div>`)[0];
+                popup_7a9cad52cc66e850a538cda18ab6c925.setContent(html_5c7fbee5e93ea6109ae48d23e12cd695);
+            
+        
+
+        marker_0375a262f32bf3fc46b3a559f442aba4.bindPopup(popup_7a9cad52cc66e850a538cda18ab6c925)
+        ;
+
+        
+    
+    
+            marker_0375a262f32bf3fc46b3a559f442aba4.bindTooltip(
+                `<div>
+                     Ballyhack
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0375a262f32bf3fc46b3a559f442aba4.setIcon(icon_c2461d96da7963d9dd43e418af498122);
+            
+    
+            var marker_1593b47c42a6ab703869ade6cc3a6d0d = L.marker(
+                [52.2374, -6.9713],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_79515f2b2de80e533e152228c7c177ee = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6a25ff3cd154aa420315a62ae69bc075 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_2651dc133f4c94795c63df1bd783011c = $(`<div id="html_2651dc133f4c94795c63df1bd783011c" style="width: 100.0%; height: 100.0%;">     <b>Passage East</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 28, 64, 67, 73, 75, 82–83, 96<br>     <b>Nota:</b> Passage; localización probable en el área de Waterford.     </div>`)[0];
+                popup_6a25ff3cd154aa420315a62ae69bc075.setContent(html_2651dc133f4c94795c63df1bd783011c);
+            
+        
+
+        marker_1593b47c42a6ab703869ade6cc3a6d0d.bindPopup(popup_6a25ff3cd154aa420315a62ae69bc075)
+        ;
+
+        
+    
+    
+            marker_1593b47c42a6ab703869ade6cc3a6d0d.bindTooltip(
+                `<div>
+                     Passage East
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1593b47c42a6ab703869ade6cc3a6d0d.setIcon(icon_79515f2b2de80e533e152228c7c177ee);
+            
+    
+            var marker_e29c15a44dd0998e6193fe2799f6da6c = L.marker(
+                [51.129, 1.308],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_def3c3856effb59307cf8c05a8abc787 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ea3ea0420d98c98412964d7c4676f773 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_e00590cfedaae7a07ea056e05675a7e2 = $(`<div id="html_e00590cfedaae7a07ea056e05675a7e2" style="width: 100.0%; height: 100.0%;">     <b>Dover</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 26–30, 33, 35<br>     <b>Nota:</b> Inglaterra.     </div>`)[0];
+                popup_ea3ea0420d98c98412964d7c4676f773.setContent(html_e00590cfedaae7a07ea056e05675a7e2);
+            
+        
+
+        marker_e29c15a44dd0998e6193fe2799f6da6c.bindPopup(popup_ea3ea0420d98c98412964d7c4676f773)
+        ;
+
+        
+    
+    
+            marker_e29c15a44dd0998e6193fe2799f6da6c.bindTooltip(
+                `<div>
+                     Dover
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e29c15a44dd0998e6193fe2799f6da6c.setIcon(icon_def3c3856effb59307cf8c05a8abc787);
+            
+    
+            var marker_d9027c054ecfe7fe086a914e443f9f81 = L.marker(
+                [51.4797, -0.0267],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_e77c1e4287ee21f9fa07848be4dba53a = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_060f2317564667630ffb44419bc887a4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_f9e1689b75e6fbba98a1732876eff2e3 = $(`<div id="html_f9e1689b75e6fbba98a1732876eff2e3" style="width: 100.0%; height: 100.0%;">     <b>Deptford</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 28, 33, 36<br>     <b>Nota:</b> Área portuaria de Londres.     </div>`)[0];
+                popup_060f2317564667630ffb44419bc887a4.setContent(html_f9e1689b75e6fbba98a1732876eff2e3);
+            
+        
+
+        marker_d9027c054ecfe7fe086a914e443f9f81.bindPopup(popup_060f2317564667630ffb44419bc887a4)
+        ;
+
+        
+    
+    
+            marker_d9027c054ecfe7fe086a914e443f9f81.bindTooltip(
+                `<div>
+                     Deptford
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_d9027c054ecfe7fe086a914e443f9f81.setIcon(icon_e77c1e4287ee21f9fa07848be4dba53a);
+            
+    
+            var marker_42620f9061560d122de81c1fb86b045b = L.marker(
+                [51.4419, 0.3708],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_7ad0fcd0d818dfe340a32ad6e4e4352e = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c54bf1b9479496549a256f8b99d89684 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_266ec984e8b0ccadc55008923c5ddfa6 = $(`<div id="html_266ec984e8b0ccadc55008923c5ddfa6" style="width: 100.0%; height: 100.0%;">     <b>Gravesend</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 26, 38, 43<br>     <b>Nota:</b> Graves End / Gravesend.     </div>`)[0];
+                popup_c54bf1b9479496549a256f8b99d89684.setContent(html_266ec984e8b0ccadc55008923c5ddfa6);
+            
+        
+
+        marker_42620f9061560d122de81c1fb86b045b.bindPopup(popup_c54bf1b9479496549a256f8b99d89684)
+        ;
+
+        
+    
+    
+            marker_42620f9061560d122de81c1fb86b045b.bindTooltip(
+                `<div>
+                     Gravesend
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_42620f9061560d122de81c1fb86b045b.setIcon(icon_7ad0fcd0d818dfe340a32ad6e4e4352e);
+            
+    
+            var marker_a5af4805023bdbe84bbedc269f5b4283 = L.marker(
+                [50.8198, -1.088],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_9af40492feba4ecc183d156a2350ab05 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c8b43515d36b67639072bde13647b85e = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5763f592d65590cc3d96f7ab9f880510 = $(`<div id="html_5763f592d65590cc3d96f7ab9f880510" style="width: 100.0%; height: 100.0%;">     <b>Portsmouth</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 39<br>     <b>Nota:</b> Inglaterra.     </div>`)[0];
+                popup_c8b43515d36b67639072bde13647b85e.setContent(html_5763f592d65590cc3d96f7ab9f880510);
+            
+        
+
+        marker_a5af4805023bdbe84bbedc269f5b4283.bindPopup(popup_c8b43515d36b67639072bde13647b85e)
+        ;
+
+        
+    
+    
+            marker_a5af4805023bdbe84bbedc269f5b4283.bindTooltip(
+                `<div>
+                     Portsmouth
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5af4805023bdbe84bbedc269f5b4283.setIcon(icon_9af40492feba4ecc183d156a2350ab05);
+            
+    
+            var marker_3b572d40766a997d9fcd5de5e09f411e = L.marker(
+                [50.7184, -3.5339],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_8acc55ee29fa9cbbd8f3fcdd6ea258d6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_a79f7746c31cd70ba653a0e34f04ae51 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0d1cbef6fa66e8f7c8162872f066acfe = $(`<div id="html_0d1cbef6fa66e8f7c8162872f066acfe" style="width: 100.0%; height: 100.0%;">     <b>Exeter</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 14<br>     <b>Nota:</b> Inglaterra.     </div>`)[0];
+                popup_a79f7746c31cd70ba653a0e34f04ae51.setContent(html_0d1cbef6fa66e8f7c8162872f066acfe);
+            
+        
+
+        marker_3b572d40766a997d9fcd5de5e09f411e.bindPopup(popup_a79f7746c31cd70ba653a0e34f04ae51)
+        ;
+
+        
+    
+    
+            marker_3b572d40766a997d9fcd5de5e09f411e.bindTooltip(
+                `<div>
+                     Exeter
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_3b572d40766a997d9fcd5de5e09f411e.setIcon(icon_8acc55ee29fa9cbbd8f3fcdd6ea258d6);
+            
+    
+            var marker_2e447a1c656fec2fd3b9d2ac44a9a425 = L.marker(
+                [50.6859, -3.4666],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_da5d96ef09d52770710da5c51dcbf3f3 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_148273698d31550119a201276edfe37b = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_0b662c7881a25159b03cf70c09ebe63c = $(`<div id="html_0b662c7881a25159b03cf70c09ebe63c" style="width: 100.0%; height: 100.0%;">     <b>Topsham</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 14<br>     <b>Nota:</b> Inglaterra.     </div>`)[0];
+                popup_148273698d31550119a201276edfe37b.setContent(html_0b662c7881a25159b03cf70c09ebe63c);
+            
+        
+
+        marker_2e447a1c656fec2fd3b9d2ac44a9a425.bindPopup(popup_148273698d31550119a201276edfe37b)
+        ;
+
+        
+    
+    
+            marker_2e447a1c656fec2fd3b9d2ac44a9a425.bindTooltip(
+                `<div>
+                     Topsham
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2e447a1c656fec2fd3b9d2ac44a9a425.setIcon(icon_da5d96ef09d52770710da5c51dcbf3f3);
+            
+    
+            var marker_0921826911119a518a655540b1b73425 = L.marker(
+                [49.9139, -6.3188],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_2096800a55986a6bd33187bb7ad9beab = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f11b513f58119ab46f7862c70ca17b72 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_1dd01da35f88fff3dcf2cdcc20ad5896 = $(`<div id="html_1dd01da35f88fff3dcf2cdcc20ad5896" style="width: 100.0%; height: 100.0%;">     <b>Isles of Scilly</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 8<br>     <b>Nota:</b> Scilly.     </div>`)[0];
+                popup_f11b513f58119ab46f7862c70ca17b72.setContent(html_1dd01da35f88fff3dcf2cdcc20ad5896);
+            
+        
+
+        marker_0921826911119a518a655540b1b73425.bindPopup(popup_f11b513f58119ab46f7862c70ca17b72)
+        ;
+
+        
+    
+    
+            marker_0921826911119a518a655540b1b73425.bindTooltip(
+                `<div>
+                     Isles of Scilly
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0921826911119a518a655540b1b73425.setIcon(icon_2096800a55986a6bd33187bb7ad9beab);
+            
+    
+            var marker_c0207664b8f73d929ed7e16886c53ec1 = L.marker(
+                [43.5485, 10.3106],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_71c14ba1e2c512c99d781b3ccd71def4 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7b04062a6598b9d6b42091009b894f68 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_45f16457de222ae68a2238d73ad3977a = $(`<div id="html_45f16457de222ae68a2238d73ad3977a" style="width: 100.0%; height: 100.0%;">     <b>Livorno (Leghorn)</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 13<br>     <b>Nota:</b> Leghorn.     </div>`)[0];
+                popup_7b04062a6598b9d6b42091009b894f68.setContent(html_45f16457de222ae68a2238d73ad3977a);
+            
+        
+
+        marker_c0207664b8f73d929ed7e16886c53ec1.bindPopup(popup_7b04062a6598b9d6b42091009b894f68)
+        ;
+
+        
+    
+    
+            marker_c0207664b8f73d929ed7e16886c53ec1.bindTooltip(
+                `<div>
+                     Livorno (Leghorn)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c0207664b8f73d929ed7e16886c53ec1.setIcon(icon_71c14ba1e2c512c99d781b3ccd71def4);
+            
+    
+            var marker_c9ab0f5158ebd0b9f31dc42db2be1e08 = L.marker(
+                [47.2442, -53.9655],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_0133f5b2fc81e2d19ae4921927c27d57 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_7ef1a5af1fb2538a07a184f2f36bbc9d = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_524e7fcc6c819db9922a551605544476 = $(`<div id="html_524e7fcc6c819db9922a551605544476" style="width: 100.0%; height: 100.0%;">     <b>Placentia</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 3<br>     <b>Nota:</b> Terranova.     </div>`)[0];
+                popup_7ef1a5af1fb2538a07a184f2f36bbc9d.setContent(html_524e7fcc6c819db9922a551605544476);
+            
+        
+
+        marker_c9ab0f5158ebd0b9f31dc42db2be1e08.bindPopup(popup_7ef1a5af1fb2538a07a184f2f36bbc9d)
+        ;
+
+        
+    
+    
+            marker_c9ab0f5158ebd0b9f31dc42db2be1e08.bindTooltip(
+                `<div>
+                     Placentia
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_c9ab0f5158ebd0b9f31dc42db2be1e08.setIcon(icon_0133f5b2fc81e2d19ae4921927c27d57);
+            
+    
+            var marker_43fbdd83c8e6b0362242f5bac43dbb2c = L.marker(
+                [46.7398, -53.364],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_f8401dac055d2d99b94c31b8dcc5281d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_68d846ddf4e7c114a169f8f890304536 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c048f62a471f5fd8153b8a45036a99e1 = $(`<div id="html_c048f62a471f5fd8153b8a45036a99e1" style="width: 100.0%; height: 100.0%;">     <b>Trepassey</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 3<br>     <b>Nota:</b> Terranova.     </div>`)[0];
+                popup_68d846ddf4e7c114a169f8f890304536.setContent(html_c048f62a471f5fd8153b8a45036a99e1);
+            
+        
+
+        marker_43fbdd83c8e6b0362242f5bac43dbb2c.bindPopup(popup_68d846ddf4e7c114a169f8f890304536)
+        ;
+
+        
+    
+    
+            marker_43fbdd83c8e6b0362242f5bac43dbb2c.bindTooltip(
+                `<div>
+                     Trepassey
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_43fbdd83c8e6b0362242f5bac43dbb2c.setIcon(icon_f8401dac055d2d99b94c31b8dcc5281d);
+            
+    
+            var marker_143b3a8de4447abc628390919b295d7d = L.marker(
+                [47.315, -52.7923],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_6cc6af9d40621cfcf1b4efcbf1ef4e4c = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_905c6946d1fb809fe57ba6e1ac676531 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7f368874480953696afe11ea3d455cd2 = $(`<div id="html_7f368874480953696afe11ea3d455cd2" style="width: 100.0%; height: 100.0%;">     <b>Bay Bulls</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 4–5<br>     <b>Nota:</b> Baybulls / Bay bulls.     </div>`)[0];
+                popup_905c6946d1fb809fe57ba6e1ac676531.setContent(html_7f368874480953696afe11ea3d455cd2);
+            
+        
+
+        marker_143b3a8de4447abc628390919b295d7d.bindPopup(popup_905c6946d1fb809fe57ba6e1ac676531)
+        ;
+
+        
+    
+    
+            marker_143b3a8de4447abc628390919b295d7d.bindTooltip(
+                `<div>
+                     Bay Bulls
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_143b3a8de4447abc628390919b295d7d.setIcon(icon_6cc6af9d40621cfcf1b4efcbf1ef4e4c);
+            
+    
+            var marker_1feca969245e2e623c1bd93a4f577ad8 = L.marker(
+                [47.0236, -52.8878],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_f06827065af8de5880886bc0a0aadd1f = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_740a500b8de5afe929edc00927dfdbbd = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_7cfd850854c49a160dfb214d837cfadd = $(`<div id="html_7cfd850854c49a160dfb214d837cfadd" style="width: 100.0%; height: 100.0%;">     <b>Ferryland</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 9–10, 18<br>     <b>Nota:</b> Terranova.     </div>`)[0];
+                popup_740a500b8de5afe929edc00927dfdbbd.setContent(html_7cfd850854c49a160dfb214d837cfadd);
+            
+        
+
+        marker_1feca969245e2e623c1bd93a4f577ad8.bindPopup(popup_740a500b8de5afe929edc00927dfdbbd)
+        ;
+
+        
+    
+    
+            marker_1feca969245e2e623c1bd93a4f577ad8.bindTooltip(
+                `<div>
+                     Ferryland
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1feca969245e2e623c1bd93a4f577ad8.setIcon(icon_f06827065af8de5880886bc0a0aadd1f);
+            
+    
+            var marker_107401872723b851743ef46ddbe1a53b = L.marker(
+                [47.6876, -53.2143],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_860680dd82a4db0f06b027f18d10d454 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_d37c26b635913f6cbd57274d5fda1034 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_8dcae3ac5b5a734ce89cb6098183a37c = $(`<div id="html_8dcae3ac5b5a734ce89cb6098183a37c" style="width: 100.0%; height: 100.0%;">     <b>Harbour Grace</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 15–18, 34, 43<br>     <b>Nota:</b> Terranova.     </div>`)[0];
+                popup_d37c26b635913f6cbd57274d5fda1034.setContent(html_8dcae3ac5b5a734ce89cb6098183a37c);
+            
+        
+
+        marker_107401872723b851743ef46ddbe1a53b.bindPopup(popup_d37c26b635913f6cbd57274d5fda1034)
+        ;
+
+        
+    
+    
+            marker_107401872723b851743ef46ddbe1a53b.bindTooltip(
+                `<div>
+                     Harbour Grace
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_107401872723b851743ef46ddbe1a53b.setIcon(icon_860680dd82a4db0f06b027f18d10d454);
+            
+    
+            var marker_50a1a5b69dd12d95b87db6257bf805a7 = L.marker(
+                [47.5615, -52.7126],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_3fed4db5ff2f2b6dbf6ab5f4bad57be0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_cdd0c219146126a2200e55768a9c2b57 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_9d43f2a74f01033752959157e3ff4b06 = $(`<div id="html_9d43f2a74f01033752959157e3ff4b06" style="width: 100.0%; height: 100.0%;">     <b>St. John’s</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Alta<br>     <b>Páginas:</b> 18, 48, 50<br>     <b>Nota:</b> St. Johns / St. Johns Nf.     </div>`)[0];
+                popup_cdd0c219146126a2200e55768a9c2b57.setContent(html_9d43f2a74f01033752959157e3ff4b06);
+            
+        
+
+        marker_50a1a5b69dd12d95b87db6257bf805a7.bindPopup(popup_cdd0c219146126a2200e55768a9c2b57)
+        ;
+
+        
+    
+    
+            marker_50a1a5b69dd12d95b87db6257bf805a7.bindTooltip(
+                `<div>
+                     St. John’s
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_50a1a5b69dd12d95b87db6257bf805a7.setIcon(icon_3fed4db5ff2f2b6dbf6ab5f4bad57be0);
+            
+    
+            var marker_2326e87cb61627c3d7b35dd1e4d954d2 = L.marker(
+                [36.7213, -4.4214],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_37e3dad72981e09df9afc871b830bdf0 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_add15e0c20605449b4b1b2f5673b8d6a = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_556f4e183e7afbf1d136e2e191d57499 = $(`<div id="html_556f4e183e7afbf1d136e2e191d57499" style="width: 100.0%; height: 100.0%;">     <b>Málaga</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 66, 69, 73–74<br>     <b>Nota:</b> Aparece a menudo en contexto comercial (“Malaga wine”).     </div>`)[0];
+                popup_add15e0c20605449b4b1b2f5673b8d6a.setContent(html_556f4e183e7afbf1d136e2e191d57499);
+            
+        
+
+        marker_2326e87cb61627c3d7b35dd1e4d954d2.bindPopup(popup_add15e0c20605449b4b1b2f5673b8d6a)
+        ;
+
+        
+    
+    
+            marker_2326e87cb61627c3d7b35dd1e4d954d2.bindTooltip(
+                `<div>
+                     Málaga
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_2326e87cb61627c3d7b35dd1e4d954d2.setIcon(icon_37e3dad72981e09df9afc871b830bdf0);
+            
+    
+            var marker_b60a2a5bbf5ecf1461b0baf3830ed2e2 = L.marker(
+                [45.12, -0.66],
+                {
+}
+            ).addTo(marker_cluster_58d3cd1f672ec788b4313e1362a880ac);
+        
+    
+            var icon_98af8bd1ec28a7ac3eec7279f701c085 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "blue",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_47cdacc781fb161ba245425a7fbbaa40 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a16616ad2ac526c7e30b5fc6b50e6726 = $(`<div id="html_a16616ad2ac526c7e30b5fc6b50e6726" style="width: 100.0%; height: 100.0%;">     <b>St. Martin (aprox., área de Blaye)</b><br>     <b>Categoría:</b> Puerto/ciudad<br>     <b>Seguridad:</b> Baja<br>     <b>Páginas:</b> 98<br>     <b>Nota:</b> Aparece junto con Blaye; localización aproximada.     </div>`)[0];
+                popup_47cdacc781fb161ba245425a7fbbaa40.setContent(html_a16616ad2ac526c7e30b5fc6b50e6726);
+            
+        
+
+        marker_b60a2a5bbf5ecf1461b0baf3830ed2e2.bindPopup(popup_47cdacc781fb161ba245425a7fbbaa40)
+        ;
+
+        
+    
+    
+            marker_b60a2a5bbf5ecf1461b0baf3830ed2e2.bindTooltip(
+                `<div>
+                     St. Martin (aprox., área de Blaye)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_b60a2a5bbf5ecf1461b0baf3830ed2e2.setIcon(icon_98af8bd1ec28a7ac3eec7279f701c085);
+            
+    
+            marker_cluster_58d3cd1f672ec788b4313e1362a880ac.addTo(feature_group_02376dd6afcc80da2df7c7820ddb42d9);
+        
+    
+            feature_group_02376dd6afcc80da2df7c7820ddb42d9.addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+        
+    
+            var feature_group_fa5586bd8aa809342c1c1b2fe22c1100 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_9fb405450a2621c7dc5ad1b655d5c5fe = L.marker(
+                [50.7156, -3.5309],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_0823ef685c6139c7fffd04b43c6c9f98 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_452bcd215c5532c7f9a8e20079ca5337 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c6d2cd0da8f985dc4020b00f558c8b12 = $(`<div id="html_c6d2cd0da8f985dc4020b00f558c8b12" style="width: 100.0%; height: 100.0%;">     <b>Devon</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 13<br>     <b>Nota:</b> Condado/región.     </div>`)[0];
+                popup_452bcd215c5532c7f9a8e20079ca5337.setContent(html_c6d2cd0da8f985dc4020b00f558c8b12);
+            
+        
+
+        marker_9fb405450a2621c7dc5ad1b655d5c5fe.bindPopup(popup_452bcd215c5532c7f9a8e20079ca5337)
+        ;
+
+        
+    
+    
+            marker_9fb405450a2621c7dc5ad1b655d5c5fe.bindTooltip(
+                `<div>
+                     Devon
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9fb405450a2621c7dc5ad1b655d5c5fe.setIcon(icon_0823ef685c6139c7fffd04b43c6c9f98);
+            
+    
+            var marker_15c1e81798f31bc844c67811231c7b5f = L.marker(
+                [48.7, -56.0],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_cde473bdef5185ac34dee7f79cff6a30 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f31a054cab863cccc63dbe7c8af4992f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_52114e3b5649b5e5f0929ee6aa67d696 = $(`<div id="html_52114e3b5649b5e5f0929ee6aa67d696" style="width: 100.0%; height: 100.0%;">     <b>Newfoundland (centro aproximado)</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 3–5, 9–17, 92, 94, 96–97<br>     <b>Nota:</b> Referencia regional a Terranova.     </div>`)[0];
+                popup_f31a054cab863cccc63dbe7c8af4992f.setContent(html_52114e3b5649b5e5f0929ee6aa67d696);
+            
+        
+
+        marker_15c1e81798f31bc844c67811231c7b5f.bindPopup(popup_f31a054cab863cccc63dbe7c8af4992f)
+        ;
+
+        
+    
+    
+            marker_15c1e81798f31bc844c67811231c7b5f.bindTooltip(
+                `<div>
+                     Newfoundland (centro aproximado)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_15c1e81798f31bc844c67811231c7b5f.setIcon(icon_cde473bdef5185ac34dee7f79cff6a30);
+            
+    
+            var marker_e4c6dd223c24be3ec71e9e5b4625bce3 = L.marker(
+                [43.9, -71.4],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_da4b54ef8ff22c9311b6efd075aa16f8 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_9b8d44e5c9fbef5af484cac79a8b51bb = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_5f3d9680cced6afad4900249e44f221e = $(`<div id="html_5f3d9680cced6afad4900249e44f221e" style="width: 100.0%; height: 100.0%;">     <b>New England (aprox.)</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 43<br>     <b>Nota:</b> Referencia regional.     </div>`)[0];
+                popup_9b8d44e5c9fbef5af484cac79a8b51bb.setContent(html_5f3d9680cced6afad4900249e44f221e);
+            
+        
+
+        marker_e4c6dd223c24be3ec71e9e5b4625bce3.bindPopup(popup_9b8d44e5c9fbef5af484cac79a8b51bb)
+        ;
+
+        
+    
+    
+            marker_e4c6dd223c24be3ec71e9e5b4625bce3.bindTooltip(
+                `<div>
+                     New England (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e4c6dd223c24be3ec71e9e5b4625bce3.setIcon(icon_da4b54ef8ff22c9311b6efd075aa16f8);
+            
+    
+            var marker_847b23bbefcc8e1a9474fff15ed9a132 = L.marker(
+                [40.2, -3.7],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_7d2a5edfc9a837250f72fd8e286de409 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_ff2df6c680ae6c78fbca6feb26e69910 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a0679ce57052631206c90342138005c8 = $(`<div id="html_a0679ce57052631206c90342138005c8" style="width: 100.0%; height: 100.0%;">     <b>Spain (aprox.)</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Baja<br>     <b>Páginas:</b> 4, 10, 15<br>     <b>Nota:</b> Referencia general al país.     </div>`)[0];
+                popup_ff2df6c680ae6c78fbca6feb26e69910.setContent(html_a0679ce57052631206c90342138005c8);
+            
+        
+
+        marker_847b23bbefcc8e1a9474fff15ed9a132.bindPopup(popup_ff2df6c680ae6c78fbca6feb26e69910)
+        ;
+
+        
+    
+    
+            marker_847b23bbefcc8e1a9474fff15ed9a132.bindTooltip(
+                `<div>
+                     Spain (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_847b23bbefcc8e1a9474fff15ed9a132.setIcon(icon_7d2a5edfc9a837250f72fd8e286de409);
+            
+    
+            var marker_1f169ec554390d0d6eb8b58495d8a6f9 = L.marker(
+                [39.6, -8.0],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_a04c3349e9dc22ebdbe59a5c91ff9902 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_6bdb32c5cd2f3e3790e9d50a9816d8c4 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_12e3fb2ca0559799e97062301101d9d6 = $(`<div id="html_12e3fb2ca0559799e97062301101d9d6" style="width: 100.0%; height: 100.0%;">     <b>Portugal (aprox.)</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Baja<br>     <b>Páginas:</b> 4, 10, 15<br>     <b>Nota:</b> Referencia general al país.     </div>`)[0];
+                popup_6bdb32c5cd2f3e3790e9d50a9816d8c4.setContent(html_12e3fb2ca0559799e97062301101d9d6);
+            
+        
+
+        marker_1f169ec554390d0d6eb8b58495d8a6f9.bindPopup(popup_6bdb32c5cd2f3e3790e9d50a9816d8c4)
+        ;
+
+        
+    
+    
+            marker_1f169ec554390d0d6eb8b58495d8a6f9.bindTooltip(
+                `<div>
+                     Portugal (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_1f169ec554390d0d6eb8b58495d8a6f9.setIcon(icon_a04c3349e9dc22ebdbe59a5c91ff9902);
+            
+    
+            var marker_0d21a1f56a17f5fbd2e420c9cd789857 = L.marker(
+                [52.5, -1.2],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_1136a7453951deae221ee1f287e2c2ba = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_929e567d165876e4abcc6286023363db = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_a51d276eb590f327a26814162f9aae12 = $(`<div id="html_a51d276eb590f327a26814162f9aae12" style="width: 100.0%; height: 100.0%;">     <b>England (aprox.)</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Baja<br>     <b>Páginas:</b> 5, 12<br>     <b>Nota:</b> Referencia general al país.     </div>`)[0];
+                popup_929e567d165876e4abcc6286023363db.setContent(html_a51d276eb590f327a26814162f9aae12);
+            
+        
+
+        marker_0d21a1f56a17f5fbd2e420c9cd789857.bindPopup(popup_929e567d165876e4abcc6286023363db)
+        ;
+
+        
+    
+    
+            marker_0d21a1f56a17f5fbd2e420c9cd789857.bindTooltip(
+                `<div>
+                     England (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_0d21a1f56a17f5fbd2e420c9cd789857.setIcon(icon_1136a7453951deae221ee1f287e2c2ba);
+            
+    
+            var marker_9ff6e28bbf73e6351e2ba89122349090 = L.marker(
+                [50.9, -3.5],
+                {
+}
+            ).addTo(feature_group_fa5586bd8aa809342c1c1b2fe22c1100);
+        
+    
+            var icon_9e202480298f9756307e0fdac7833ace = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "flag",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_c1a585514cbc12f4c788787ee61f70ab = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_4a3e0d5ed4bc71f2792b51aea639026b = $(`<div id="html_4a3e0d5ed4bc71f2792b51aea639026b" style="width: 100.0%; height: 100.0%;">     <b>West of England (aprox.)</b><br>     <b>Categoría:</b> Región<br>     <b>Seguridad:</b> Baja<br>     <b>Páginas:</b> 5<br>     <b>Nota:</b> Referencia regional.     </div>`)[0];
+                popup_c1a585514cbc12f4c788787ee61f70ab.setContent(html_4a3e0d5ed4bc71f2792b51aea639026b);
+            
+        
+
+        marker_9ff6e28bbf73e6351e2ba89122349090.bindPopup(popup_c1a585514cbc12f4c788787ee61f70ab)
+        ;
+
+        
+    
+    
+            marker_9ff6e28bbf73e6351e2ba89122349090.bindTooltip(
+                `<div>
+                     West of England (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9ff6e28bbf73e6351e2ba89122349090.setIcon(icon_9e202480298f9756307e0fdac7833ace);
+            
+    
+            feature_group_fa5586bd8aa809342c1c1b2fe22c1100.addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+        
+    
+            var feature_group_dc75d8a33fcda20ff8916218b93172ce = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var marker_e58f39d1a6dd9a0c0b25ec9c173d42bf = L.marker(
+                [45.25, -50.0],
+                {
+}
+            ).addTo(feature_group_dc75d8a33fcda20ff8916218b93172ce);
+        
+    
+            var icon_dbab368c22ae82df181af959acf682e5 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_efb1954f4b093b0aaef85eed1773ca6f = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_d73e387106c9dd7eac2c2200284e00b0 = $(`<div id="html_d73e387106c9dd7eac2c2200284e00b0" style="width: 100.0%; height: 100.0%;">     <b>Grand Banks (aprox.)</b><br>     <b>Categoría:</b> Mar/área marítima<br>     <b>Seguridad:</b> Media<br>     <b>Páginas:</b> 4, 9–10<br>     <b>Nota:</b> Banks; bancos pesqueros de Terranova.     </div>`)[0];
+                popup_efb1954f4b093b0aaef85eed1773ca6f.setContent(html_d73e387106c9dd7eac2c2200284e00b0);
+            
+        
+
+        marker_e58f39d1a6dd9a0c0b25ec9c173d42bf.bindPopup(popup_efb1954f4b093b0aaef85eed1773ca6f)
+        ;
+
+        
+    
+    
+            marker_e58f39d1a6dd9a0c0b25ec9c173d42bf.bindTooltip(
+                `<div>
+                     Grand Banks (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_e58f39d1a6dd9a0c0b25ec9c173d42bf.setIcon(icon_dbab368c22ae82df181af959acf682e5);
+            
+    
+            var marker_a3840c3f5ca5bb06f85085197ea624db = L.marker(
+                [36.0, 18.0],
+                {
+}
+            ).addTo(feature_group_dc75d8a33fcda20ff8916218b93172ce);
+        
+    
+            var icon_48bd82f04c687078fcfccb7b65c05a05 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "tint",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_555c9a55c8cd9ae979c530d83093b355 = L.popup({
+  "maxWidth": 320,
+});
+
+        
+            
+                var html_c0b221b6de77120147b98191e0f29cc3 = $(`<div id="html_c0b221b6de77120147b98191e0f29cc3" style="width: 100.0%; height: 100.0%;">     <b>Mediterranean (aprox.)</b><br>     <b>Categoría:</b> Mar/área marítima<br>     <b>Seguridad:</b> Baja<br>     <b>Páginas:</b> 6<br>     <b>Nota:</b> Referencia amplia al Mediterráneo.     </div>`)[0];
+                popup_555c9a55c8cd9ae979c530d83093b355.setContent(html_c0b221b6de77120147b98191e0f29cc3);
+            
+        
+
+        marker_a3840c3f5ca5bb06f85085197ea624db.bindPopup(popup_555c9a55c8cd9ae979c530d83093b355)
+        ;
+
+        
+    
+    
+            marker_a3840c3f5ca5bb06f85085197ea624db.bindTooltip(
+                `<div>
+                     Mediterranean (aprox.)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a3840c3f5ca5bb06f85085197ea624db.setIcon(icon_48bd82f04c687078fcfccb7b65c05a05);
+            
+    
+            feature_group_dc75d8a33fcda20ff8916218b93172ce.addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+        
+    
+            var feature_group_11804d5f26578101a995a22d0679c209 = L.featureGroup(
+                {
+}
+            );
+        
+    
+            var poly_line_8ad80196cb3255328c74d9c62667622f = L.polyline(
+                [[52.2593, -7.1101], [48.7, -56.0]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_8ad80196cb3255328c74d9c62667622f.bindTooltip(
+                `<div>
+                     Ruta hacia Terranova
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_f77df400135116159f7fa069b7bdcce6 = L.polyline(
+                [[52.2593, -7.1101], [51.5074, -0.1278]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_f77df400135116159f7fa069b7bdcce6.bindTooltip(
+                `<div>
+                     Ruta hacia Londres
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_eb41eef8087bfc6a8fc7422dd0687fd1 = L.polyline(
+                [[52.2593, -7.1101], [38.7223, -9.1393]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_eb41eef8087bfc6a8fc7422dd0687fd1.bindTooltip(
+                `<div>
+                     Ruta hacia Lisboa
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_a5b5b1c5c5ff496d2cdab541d7a8a002 = L.polyline(
+                [[52.2593, -7.1101], [36.5271, -6.2886]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_a5b5b1c5c5ff496d2cdab541d7a8a002.bindTooltip(
+                `<div>
+                     Ruta hacia Cádiz
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_3fc903f14f7cc3eaad0b85ab6feee09d = L.polyline(
+                [[52.2593, -7.1101], [51.8985, -8.4756]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_3fc903f14f7cc3eaad0b85ab6feee09d.bindTooltip(
+                `<div>
+                     Ruta hacia Cork
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_98dc9fa727ff08113e560930b599fc45 = L.polyline(
+                [[52.2593, -7.1101], [53.3498, -6.2603]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_98dc9fa727ff08113e560930b599fc45.bindTooltip(
+                `<div>
+                     Ruta hacia Dublín
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4d6455f51c24172deaa67f54be5268e4 = L.polyline(
+                [[52.2593, -7.1101], [44.8378, -0.5792]],
+                {"bubblingMouseEvents": true, "color": "#3388ff", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "#3388ff", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.65, "smoothFactor": 1.0, "stroke": true, "weight": 3}
+            ).addTo(feature_group_11804d5f26578101a995a22d0679c209);
+        
+    
+            poly_line_4d6455f51c24172deaa67f54be5268e4.bindTooltip(
+                `<div>
+                     Ruta hacia Burdeos
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            feature_group_11804d5f26578101a995a22d0679c209.addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+        
+    
+            var layer_control_05d011157807ec4a53f1d9cf4659fff2_layers = {
+                base_layers : {
+                    "openstreetmap" : tile_layer_61fd362ef945958b7e0e7b957b9f9ea1,
+                },
+                overlays :  {
+                    "Puertos y ciudades" : feature_group_02376dd6afcc80da2df7c7820ddb42d9,
+                    "Regiones / pa\u00edses" : feature_group_fa5586bd8aa809342c1c1b2fe22c1100,
+                    "\u00c1reas mar\u00edtimas" : feature_group_dc75d8a33fcda20ff8916218b93172ce,
+                    "Rutas conceptuales desde Waterford" : feature_group_11804d5f26578101a995a22d0679c209,
+                },
+            };
+            let layer_control_05d011157807ec4a53f1d9cf4659fff2 = L.control.layers(
+                layer_control_05d011157807ec4a53f1d9cf4659fff2_layers.base_layers,
+                layer_control_05d011157807ec4a53f1d9cf4659fff2_layers.overlays,
+                {
+  "position": "topright",
+  "collapsed": false,
+  "autoZIndex": true,
+}
+            ).addTo(map_f2514b7aea6e97fe9006c610235c8c3a);
+
+        
+</script>
+</html>
